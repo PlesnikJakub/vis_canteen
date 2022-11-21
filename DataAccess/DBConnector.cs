@@ -9,7 +9,7 @@ namespace Canteen.DataAccess
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             builder.DataSource = @"dbsys.cs.vsb.cz\STUDENT";   // update me
             builder.UserID = "ple0049";              // update me
-            builder.Password =                                                                                                                                          "fgdfg";      // update me
+            builder.Password =  "UPDATE ME";      // update me
             builder.InitialCatalog = "ple0049";
             return builder;
         }
