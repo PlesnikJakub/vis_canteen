@@ -1,4 +1,5 @@
-﻿using Canteen.DataAccess;
+﻿using Canteen.Application.DTO;
+using Canteen.DataAccess;
 using System.Data;
 
 namespace Canteen.Application.TransactionScript
@@ -11,14 +12,21 @@ namespace Canteen.Application.TransactionScript
             _menuItemTDG = new MenuItemTDG();
         }
 
-        public IEnumerable<string> Execute()
+        public IEnumerable<MenuItemDTO> Execute()
         {
             var table = _menuItemTDG.GetAll();
-            List<string> result = new ();
+            List<MenuItemDTO> result = new ();
 
             foreach (DataRow row in table.Rows)
             {
-                result.Add(row["title"]?.ToString() ?? "");
+                var item = new MenuItemDTO
+                {
+                    Id = Convert.ToInt32(row["id"]),
+                    Title = row["title"]?.ToString() ?? "",
+                    Price = Convert.ToDouble(row["price"]),
+                    IsVegan = Convert.ToBoolean(row["is_vegan"])
+                };
+                result.Add(item);
             }
 
             return result;
